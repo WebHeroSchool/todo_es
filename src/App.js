@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {count, length} from './number';
 
 const myVar = 'This is my variable';
 const myNumber = 22;
@@ -22,6 +23,8 @@ function App() {
         <p>{boolVar && 'This is logical operation'}</p>
         <p>{boolVar ? 'This is true': 'This is false'}</p>
         <p>{undefined}{null}{false}{true}</p>
+
+        <p>{count * length}</p>
         <a
           className="App-link"
           href="https://reactjs.org"
