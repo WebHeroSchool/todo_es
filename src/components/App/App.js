@@ -3,11 +3,15 @@ import ItemList from '../ItemList/ItemList';
 import InputItem from "../InputItem/InputItem";
 import Footer from "../Footer/Footer";
 
-const App = () => (<div>
-    <h1>Список дел:</h1>
-    <InputItem />
-    <ItemList />
-    <Footer />
-</div>);
+const items = ['Написать новое приложение', 'Прописать Props', 'Сделать остальные дела'];
+const App = () => (
+    <div>
+        <h1>Список дел:</h1>
+        <InputItem />
+        <ItemList />
+        <Footer count={ items.length }/>
+    </div>
+);
 
+export { items };
 export default App;
