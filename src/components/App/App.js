@@ -8,10 +8,10 @@ const App = () => (
     <div>
         <h1>Список дел:</h1>
         <InputItem />
-        <ItemList />
+        <ItemList items={ items }/>
         <Footer count={ items.length }/>
     </div>
 );
 
-export { items };
+
 export default App;
