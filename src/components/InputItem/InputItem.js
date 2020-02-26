@@ -1,7 +1,7 @@
 import React from 'react';
 
 const InputItem = () =>(
-    <input value={"Что нужно сделать?"}></input>
+    <input defaultValue={"Что нужно сделать?"}></input>
 );
 
 
