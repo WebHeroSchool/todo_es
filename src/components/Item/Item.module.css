@@ -1,6 +1,11 @@
 .item {
-    color: #333333;
+    text-decoration: none;
 }
 .done {
     text-decoration: line-through;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
 }
