@@ -21,11 +21,10 @@ const App = () => {
     ];
     return (
     <div className={styles.wrap}>
-        <h1 className={styles.title}>Список дел:</h1>
-        <InputItem/>
+        <h1>Список дел:</h1>
+        <InputItem />
         <ItemList items={ items } />
         <Footer count={ items.length }/>
     </div>);
-}
-
+};
 export default App;
