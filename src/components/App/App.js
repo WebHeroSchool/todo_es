@@ -20,7 +20,10 @@ class App extends React.Component {
                 isDone: false
             }
         ]
-    }
+    };
+
+    onClickDone = isDone => console.log(isDone);
+
     render() {
         return (
             <div className={styles.wrap}>
