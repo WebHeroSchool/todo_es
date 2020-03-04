@@ -4,16 +4,57 @@ import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import AddBox from '@material-ui/icons/AddBox';
 
-const InputItem = () =>(<div className={styles.flex}>
-        <TextField id="standard-basic" label="Добавь задание" fullWidth/>
-        <label htmlFor="icon-button-file">
-            <IconButton aria-label="upload picture" component="span">
-                <AddBox />
-            </IconButton>
-        </label>
-    </div>
 
-);
+class InputItem extends React.Component {
+    state= {
+        inputValue: '',
+        inputError: false
+    };
+
+    onButtonClick = () => {
+        if (this.state.inputValue !== '') {
+            this.setState({
+                inputValue: ''
+            });
+            this.props.onClickAdd(this.state.inputValue);
+        }
+        else {
+            this.setState ({
+                inputError: true
+            });
+        }
+        };
+
+    render () {
+
+        return (<div className={styles.flex}>
+                <TextField
+                    id="standard-basic"
+                    label="Добавь задание"
+                    fullWidth
+                    value={this.state.inputValue}
+                    error={this.state.inputError}
+                    onChange={event => this.setState({
+                        inputValue: event.target.value.toUpperCase(),
+                        inputError: false
+                    })}
+                />
+                <label
+                    htmlFor="icon-button-file"
+                    onClick={this.onButtonClick}
+                >
+                    <IconButton
+                        aria-label="upload picture"
+                        component="span"
+                    >
+                        <AddBox />
+                    </IconButton>
+                </label>
+                            </div>
+        );
+    }
+}
+
 
 
 export default InputItem;
