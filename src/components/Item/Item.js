@@ -6,14 +6,13 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 
 const Item = ({ value, isDone, onClickDone, onClickDelete, id }) => (<div className={styles.flex}>
-    <div>
+    <div onClick={() => onClickDone(id)}>
         <Checkbox
             checked={isDone}
             color="default"
             value="default"
             inputProps={{ 'aria-label': 'checkbox with default color' }}
-            onClick={() => onClickDone(id)}
-        />
+            />
         <label className={
             classnames ({
                 [styles.item]: true,
