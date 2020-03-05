@@ -29,4 +29,10 @@ const Item = ({ value, isDone, onClickDone, onClickDelete, id }) => (<div classN
 </div>
 </div>);
 
+Item.defaultProps = {
+    value: 'Задача не найдена',
+    isDone: false
+};
+
+
 export default Item;
