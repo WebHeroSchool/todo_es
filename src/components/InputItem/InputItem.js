@@ -36,7 +36,7 @@ class InputItem extends React.Component {
                     value={this.state.inputValue}
                     error={this.state.inputError}
                     onChange={event => this.setState({
-                        inputValue: event.target.value.toUpperCase(),
+                        inputValue: event.target.value,
                         inputError: false
                     })}
                 />
