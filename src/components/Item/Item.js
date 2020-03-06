@@ -8,16 +8,11 @@ import IconButton from '@material-ui/core/IconButton';
 
 class Item extends React.Component {
     componentDidMount() {
-        console.log('componentDivMount');
-    }
-
-    componentDidUpdate() {
-        console.log('componentDivUpdate');
-    }
-
+        this.timerId = setInterval(() => console.log('interval'), 1000);
+    };
     componentWillUnmount() {
-        console.log('componentWillUnmount');
-    }
+        clearInterval(this.timerId);
+    };
 
     render() {
         const { value, isDone, onClickDone, onClickDelete, id } = this.props;

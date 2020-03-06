@@ -18,7 +18,7 @@ class App extends React.Component {
                 id: 2
             },
             {
-                value: 'сделать остальные дела',
+                value: 'Сделать остальные дела',
                 isDone: false,
                 id: 3
             }
