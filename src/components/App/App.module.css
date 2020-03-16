@@ -1,6 +1,26 @@
-.wrap {
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    margin: 0 auto;
-    width: 600px;
+body {
+    padding-top: 35px;
+    background: #eee;
+    font-family: Helvetica;
+}
+
+.link {
+    text-decoration: none;
     color: #383838;
 }
+
+.wrap {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    width: 830px;
+}
+
+.sidebar {
+    width: 150px;
+}
+
+.element {
+    width: 650px;
+}
+
