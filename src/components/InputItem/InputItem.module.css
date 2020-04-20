@@ -1,4 +1,23 @@
-.flex {
+.wrap {
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
+}
+
+.inputAdd {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.error .text {
+    display: inline-block;
+    color: #ff5246;
+    font-size: 12px;
+    margin: 0;
+
+}
+.text{
+    display: none;
 }

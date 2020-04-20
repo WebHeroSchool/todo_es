@@ -1,30 +1,81 @@
 import React from 'react';
+import { Octokit } from '@octokit/rest';
 import styles from './About.module.css';
-import CardContent from '@material-ui/core/CardContent';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Octokit from '@octokit/rest';
-
 
 const octokit = new Octokit();
 
 class About extends React.Component {
     state = {
-        isLoading: true
+        isLoading: false,
+        repoList: [],
+        infoAboutUser: [],
+        isError: false,
+        errorMessage: ''
     };
 
     componentDidMount() {
         octokit.repos.listForUser({
-            username: 'aldeowl'
-        }).then(({ data }) => console.log(data));
-    }
+            username: 'skripaleva'
+        }).then(({ data }) => {
+            this.setState({
+                repoList: data,
+                isLoading: false
+            });
+        }).catch(err => {
+            this.setState({
+                isLoading: false,
+                isError: true,
+                errorMessage: err
+            });
+        });
+
+        octokit.users.getByUsername({
+            username: 'skripaleva'
+        }).then(({data}) => {
+            this.setState({
+                infoAboutUser: data,
+                isLoading: false,
+            });
+        }).catch(err => {
+            this.setState({
+                isLoading: false,
+                isError: true,
+                errorMessage: err
+            });
+        });
+     };
 
     render() {
-        const { isLoading } = this.state;
+        const { isLoading, repoList, isError, errorMessage,infoAboutUser } = this.state;
+        const Preloader = () => <div className={styles.preloader}></div>;
+
         return(
-            <CardContent>
-                <h1 className={styles.wrap}>{ isLoading ? <CircularProgress /> : 'Обо мне:'}</h1>
-            </CardContent>
+            <div className={styles.wrap}>
+                {isLoading ? <Preloader/> :
+                    <div>
+                        <h1>Обо мне:</h1>
+                        {isError ? 'Ошибка получения данных с сервера:' + errorMessage :
+                        <div className={styles.repo}>
+                            <div>
+                                <p>Логин: {infoAboutUser.login}</p>
+                                <img src={infoAboutUser.avatar_url} alt='Фото пользователя' className={styles.user_avatar} />
+                            </div>
+                            <div>
+                                <p>Мои репозитории:</p>
+                                <ol className={styles.repo_list}>
+                                    {repoList.map(repo => (<li key={repo.id}>
+                                        <a href={repo.id} className={styles.repo_name}>{repo.name}</a>
+                                    </li>
+                                ))}
+                                </ol>
+                            </div>
+                        </div>
+                    }
+                    </div>
+                }
+            </div>
         );
     }
 }
+
 export default About;

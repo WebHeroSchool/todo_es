@@ -4,19 +4,17 @@ import PropTypes from 'prop-types';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 
-const Footer = ({ count }) =>
-    <div className={styles.wrap}>
-        <Button>Осталось выполнить: {count}</Button>
+const Footer = ({ count, cauntAll, countDone, onClickDeleteDone }) =>
+    <footer className={styles.wrap}>
         <div>
             <ButtonGroup variant="text">
-                <Button>Всего</Button>
-                <Button>Осталось</Button>
-                <Button>Выполнено</Button>
+                <Button>Всего: { cauntAll }</Button>
+                <Button>Осталось: { count }</Button>
+                <Button>Выполнено: { countDone }</Button>
             </ButtonGroup>
         </div>
-        <Button>Удалить</Button>
-    </div>;
-
+        <Button onClick={() => onClickDeleteDone()}>Удалить</Button>
+    </footer>;
 
 Footer.propTypes = {
     count: PropTypes.number.isRequired
