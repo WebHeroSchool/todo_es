@@ -5,6 +5,7 @@ import Footer from "../Footer/Footer";
 import styles from './Todo.module.css';
 import Created from "../Created/Created";
 import Card from '@material-ui/core/Card';
+import { DragDropContext } from "react-beautiful-dnd";
 
 const Todo  = () => {
     const initialState = {
@@ -51,6 +52,19 @@ const Todo  = () => {
     useEffect(() => {
         console.log("mount");
     }, []); */
+
+    const onDragEnd = result => {
+        const { source, destination } = result;
+        if (!destination) return;
+
+        const newTodoItems = [...items];
+
+        const [removed] = newTodoItems.splice(source.index, 1);
+        newTodoItems.splice(destination.index, 0, removed)
+        setTodoItem([
+            ...newTodoItems
+        ])
+    }
 
     const onClickDone = id => {
         const newItemList = items.map(item => {
@@ -135,26 +149,31 @@ const Todo  = () => {
         const allItems = items;
         const completedItems = items.filter(item => item.isDone === true);
         const uncompletedItems = items.filter(item => item.isDone === false);
+
+
+
         return (
             <Card className={styles.wrap}>
-                <h1>Список дел:</h1>
-                <InputItem items={ items } onClickAdd={onClickAdd} />
-                <ItemList items={ items }
-                          onClickDone={onClickDone}
-                          onMarkImportant={onMarkImportant}
-                          onClickDelete={onClickDelete}
-                          sort={sortingTasks}
-                          sortValue={sortTask}
-                />
-                <Footer count={ uncompletedItems.length }
-                        cauntAll={ allItems.length }
-                        countDone={ completedItems.length }
-                        onClickDeleteDone={onClickDeleteDone}
-                        onClickCommonInput={onClickCommonInput}
-                        onClickSort={onClickSort}
-                        sorting={sortTask}
-                />
-                <Created />
+                <DragDropContext onDragEnd={onDragEnd}>
+                    <h1>Список дел:</h1>
+                    <InputItem items={ items } onClickAdd={onClickAdd} />
+                    <ItemList items={ items }
+                              onClickDone={onClickDone}
+                              onMarkImportant={onMarkImportant}
+                              onClickDelete={onClickDelete}
+                              sort={sortingTasks}
+                              sortValue={sortTask}
+                    />
+                    <Footer count={ uncompletedItems.length }
+                            cauntAll={ allItems.length }
+                            countDone={ completedItems.length }
+                            onClickDeleteDone={onClickDeleteDone}
+                            onClickCommonInput={onClickCommonInput}
+                            onClickSort={onClickSort}
+                            sorting={sortTask}
+                    />
+                    <Created />
+                </DragDropContext>
             </Card>);
 
 }

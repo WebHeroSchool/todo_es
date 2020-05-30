@@ -2,26 +2,36 @@ import React from 'react';
 import Item from '../Item/Item';
 import styles from './ItemList.module.css';
 import PropTypes from 'prop-types';
+import { Droppable, Draggable } from "react-beautiful-dnd";
 
-const ItemList = ({ sort, sortValue, onClickDone, onClickDelete, onMarkImportant }) => (
+const ItemList = ({ items, sort, sortValue, onClickDone, onClickDelete, onMarkImportant }) => (
     <>
         { sort.length === 0 ?
             <div className={styles.wrap}>
                 <p className={styles.empty}> Список пуст </p>
             </div>:
-        <ul className={styles.wrap}>
-            {sort.map(item => <li className={styles.mark} key={item.value}>
-                <Item
-                    value={ item.value }
-                    isDone={ item.isDone }
-                    isImportant={ item.isImportant }
-                    id={item.id}
-                    onClickDone={onClickDone}
-                    onMarkImportant={onMarkImportant}
-                    onClickDelete={onClickDelete}
-                />
-            </li>)}
-        </ul>
+            <Droppable droppableId={'list'}>
+                {(provided) => (<div ref={provided.innerRef} {...provided.droppableProps} className={styles.wrap}>
+                    {sort.map((item, index) =>
+                        <Draggable draggableId={'item' + item.id} index={index} key={item.id} >
+                            {(provided) => (
+                                <Item
+                                    value={ item.value }
+                                    isDone={ item.isDone }
+                                    isImportant={ item.isImportant }
+                                    id={item.id}
+                                    onClickDone={onClickDone}
+                                    onMarkImportant={onMarkImportant}
+                                    onClickDelete={onClickDelete}
+                                    provided={provided}
+                                    innerRef={provided.innerRef}
+                                />)}
+                        </Draggable>
+                    )}
+                    {provided.placeholder}
+
+                </div>)}
+            </Droppable>
         }
     </>
 )

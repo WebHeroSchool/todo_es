@@ -17,8 +17,11 @@ class Item extends React.Component {
     };*/
 
     render() {
-        const { value, isDone, isImportant, onClickDone, onClickDelete, onMarkImportant, id } = this.props;
-        return (<div className={styles.flex}>
+        const { value, isDone, isImportant, onClickDone, onClickDelete, onMarkImportant, id, provided, innerRef } = this.props;
+        return (<div className={styles.flex} ref={innerRef}
+                     {...provided.draggableProps}
+                     {...provided.dragHandleProps}
+            >
                     <div onClick={() => onClickDone(id)}>
                         <Checkbox
                             style={{ color: grey[700], backgroundColor: 'transparent' }}
