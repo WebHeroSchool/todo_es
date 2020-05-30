@@ -6,10 +6,24 @@
     text-decoration: line-through;
 }
 
-.flex {
+.line {
     display: flex;
     justify-content: space-between;
+    margin: 5px 0;
+    /*border: 1px solid #CCCCCC;*/
+    border-radius: 10px;
+    /*background-color: #FFFFEB;*/
 }
+.line:hover {
+    background-color: #fff5e6;
+}
+/*.flex:nth-child(2n+1) {
+    background-color: #f7f8ff;
+}
+
+.flex:nth-child(2n) .item {
+    background-color: #fff5e6;
+}*/
 
 .icons {
     margin: auto 0;
@@ -31,4 +45,10 @@
 .important {
     color: #3f51b5;
     font-weight: bold;
+    border-color: #3f51b5;
+}
+
+.importantIcon {
+    color: #CCC;
+    transition: .5s;
 }

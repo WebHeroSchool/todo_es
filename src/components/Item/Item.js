@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Checkbox from '@material-ui/core/Checkbox';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Important from '@material-ui/icons/NewReleases';
-import {grey, yellow} from "@material-ui/core/colors";
+import {grey} from "@material-ui/core/colors";
 
 
 class Item extends React.Component {
@@ -18,7 +18,8 @@ class Item extends React.Component {
 
     render() {
         const { value, isDone, isImportant, onClickDone, onClickDelete, onMarkImportant, id, provided, innerRef } = this.props;
-        return (<div className={styles.flex} ref={innerRef}
+        return (<div className={styles.line}
+                     ref={innerRef}
                      {...provided.draggableProps}
                      {...provided.dragHandleProps}
             >
@@ -42,7 +43,8 @@ class Item extends React.Component {
                         </label>
                     </div>
                     <div className={styles.icons}>
-                        <Important style={{ color: yellow[900] }} aria-label="important" onClick={() => onMarkImportant(id)} />
+                        <Important className={ classnames({[styles.importantIcon]: true, [styles.important]: isImportant }) }
+                                   onClick={() => onMarkImportant(id)} />
                         <DeleteIcon style={{ color: grey[700] }} aria-label="delete" onClick={() => onClickDelete(id)} />
                     </div>
             </div>

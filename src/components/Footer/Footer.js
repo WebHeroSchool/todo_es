@@ -13,6 +13,7 @@ const Footer = ({ onClickSort, sorting,count, cauntAll, countDone, onClickDelete
                     <button
                         className={classnames({
                             [styles.button]: true,
+                            [styles.buttonGroup]: true,
                             [styles.selected]: sorting === 'Все'
                         })}
                         onClick={() => onClickSort('Все')}
@@ -22,6 +23,7 @@ const Footer = ({ onClickSort, sorting,count, cauntAll, countDone, onClickDelete
                     <button
                         className={classnames({
                             [styles.button]: true,
+                            [styles.buttonGroup]: true,
                             [styles.selected]: sorting === 'Незавершенные'
                     })}
                         onClick={() => onClickSort('Незавершенные')}
