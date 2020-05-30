@@ -1,0 +1,22 @@
+.created {
+    display: flex;
+    justify-content: flex-end;
+    align-self: flex-end;
+    align-items: center;
+}
+
+.created_txt {
+    display: flex;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 15px;
+    width: 120px;
+    color: #0e1338;
+}
+
+.created_img {
+    display: flex;
+    width: 82px;
+    height: 22px;
+    margin-right: 10px;
+}

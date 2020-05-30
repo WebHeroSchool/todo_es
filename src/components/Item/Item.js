@@ -4,7 +4,9 @@ import styles from './Item.module.css';
 import PropTypes from 'prop-types';
 import Checkbox from '@material-ui/core/Checkbox';
 import DeleteIcon from '@material-ui/icons/Delete';
-import IconButton from '@material-ui/core/IconButton';
+import Important from '@material-ui/icons/NewReleases';
+import {grey, yellow} from "@material-ui/core/colors";
+
 
 class Item extends React.Component {
     /*componentDidMount() {
@@ -15,30 +17,33 @@ class Item extends React.Component {
     };*/
 
     render() {
-        const { value, isDone, onClickDone, onClickDelete, id } = this.props;
+        const { value, isDone, isImportant, onClickDone, onClickDelete, onMarkImportant, id } = this.props;
         return (<div className={styles.flex}>
-            <div onClick={() => onClickDone(id)}>
-                <Checkbox
-                    checked={isDone}
-                    color="default"
-                    value="default"
-                    inputProps={{ 'aria-label': 'checkbox with default color' }}
-                />
-                <label className={
-                    classnames ({
-                        [styles.item]: true,
-                        [styles.done]: isDone
-                    })
-                }>
-                    { value }
-                </label>
+                    <div onClick={() => onClickDone(id)}>
+                        <Checkbox
+                            style={{ color: grey[700], backgroundColor: 'transparent' }}
+
+                            checked={isDone}
+                            color="default"
+                            value="default"
+                            inputProps={{ 'aria-label': 'checkbox with default color' }}
+                        />
+                        <label className={
+                            classnames ({
+                                [styles.item]: true,
+                                [styles.done]: isDone,
+                                [styles.important]: isImportant
+                            })
+                        }>
+                            { value }
+                        </label>
+                    </div>
+                    <div className={styles.icons}>
+                        <Important style={{ color: yellow[900] }} aria-label="important" onClick={() => onMarkImportant(id)} />
+                        <DeleteIcon style={{ color: grey[700] }} aria-label="delete" onClick={() => onClickDelete(id)} />
+                    </div>
             </div>
-            <div>
-                <IconButton aria-label="delete" onClick={() => onClickDelete(id)}>
-                    <DeleteIcon  />
-                </IconButton>
-            </div>
-        </div>);
+        )
     }
 }
 

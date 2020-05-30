@@ -21,3 +21,22 @@
 .text{
     display: none;
 }
+
+.add, .error{
+    margin: auto 0;
+}
+
+.addIcon:hover {
+    cursor: pointer;
+    opacity: .7;
+}
+
+.addIcon:active {
+    opacity: .9;
+}
+
+.button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+}

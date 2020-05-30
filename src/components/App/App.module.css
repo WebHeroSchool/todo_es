@@ -1,11 +1,10 @@
 body {
-    background: #eee;
     padding-top: 20px;
     font-family: Helvetica, sans-serif;
     background:
-            linear-gradient(45deg, #92baac 45px, transparent 45px)64px 64px,
-            linear-gradient(45deg, #92baac 45px, transparent 45px,transparent 91px, #e1ebbd 91px, #e1ebbd 135px, transparent 135px),
-            linear-gradient(-45deg, #92baac 23px, transparent 23px, transparent 68px,#92baac 68px,#92baac 113px,transparent 113px,transparent 158px,#92baac 158px);
+            linear-gradient(45deg, #92baac 45px, transparent 45px) 64px 64px,
+            linear-gradient(45deg, #92baac 45px, transparent 45px, transparent 91px, #e1ebbd 91px, #e1ebbd 135px, transparent 135px),
+            linear-gradient(-45deg, #92baac 23px, transparent 23px, transparent 68px, #92baac 68px, #92baac 113px, transparent 113px, transparent 158px, #92baac 158px);
     background-color:#e1ebbd;
     background-size: 128px 128px;
 }
@@ -13,23 +12,59 @@ body {
 .link {
     text-decoration: none;
     color: #383838;
+
 }
 
 .wrap {
     margin: auto;
-    width: 820px;
+    max-width: 700px;
     display: flex;
-    justify-content: space-between;
-    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    /*justify-content: space-between;*/
+    /*height: 100%;*/
+    /*color: #383838;*/
 }
 
 .sidebar {
-    width: 150px;
-    padding-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px 0;
+    width: 70%;
 }
 
 .element {
-    width: 650px;
-    color: #383838;
+    /*color: #383838;*/
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center
 }
 
+.button {
+    /*display: block;*/
+    width: 160px;
+    height: 44px;
+    border: none;
+    background: transparent;
+    font-weight: bold;
+    font-size: 24px;
+    background: linear-gradient(45deg, rgba(255, 220, 90, 0.5), rgba(241, 163, 47, 0.5));
+    border-radius: 5px;
+    color: #092314;
+    outline: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    transition: all .1s;
+}
+
+.button:hover {
+    /*background: linear-gradient(45deg, rgba(255, 220, 90, 1), rgba(241, 163, 47, 1));*/
+    transform: translate(.5px,1px);
+    cursor: pointer;
+}
+
+.link_active .button {
+    background: linear-gradient(45deg, rgba(255, 220, 90, 0.9), rgba(241, 163, 47, 0.9));
+}

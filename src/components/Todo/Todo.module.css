@@ -3,5 +3,14 @@
     margin: 0 auto;
     width: 600px;
     color: #383838;
-    padding: 10px;
+    padding: 20px;
+
+    /*padding: 10px;*/
+}
+
+.wrap h1 {
+    font-family: 'Lora', serif;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    color: #841d29;
 }

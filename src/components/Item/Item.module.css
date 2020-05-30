@@ -10,3 +10,25 @@
     display: flex;
     justify-content: space-between;
 }
+
+.icons {
+    margin: auto 0;
+}
+
+.icons svg {
+    margin-left: 5px;
+}
+
+.icons svg:hover {
+    cursor: pointer;
+    opacity: .7;
+}
+
+.icons svg:active {
+    opacity: .9;
+}
+
+.important {
+    color: #3f51b5;
+    font-weight: bold;
+}
