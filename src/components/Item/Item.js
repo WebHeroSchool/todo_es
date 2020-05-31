@@ -23,7 +23,7 @@ class Item extends React.Component {
                      {...provided.draggableProps}
                      {...provided.dragHandleProps}
             >
-                    <div onClick={() => onClickDone(id)}>
+                    <div className={styles.task} onClick={() => onClickDone(id)}>
                         <Checkbox
                             style={{ color: grey[700], backgroundColor: 'transparent' }}
 

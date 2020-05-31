@@ -9,27 +9,10 @@ import { DragDropContext } from "react-beautiful-dnd";
 
 const Todo  = () => {
     const initialState = {
-        items: [
-            {
-                value: 'Наведи порядок на своей планете',
-                isDone: true,
-                isImportant: true,
-                id: 1
-            },
-            {
-                value: 'Напиши код',
-                isDone: true,
-                isImportant: false,
-                id: 2
-            },
-            {
-                value: 'Погладь кота',
-                isDone: false,
-                isImportant: false,
-                id: 3
-            }
-        ],
-        count: 3,
+        items:
+            JSON.parse(localStorage.getItem('editedList') ||
+            '[{"value": "Наведи порядок на своей планете", "isDone": true, "isImportant": true, "id": 1}]'),
+        count: JSON.parse(localStorage.getItem('count')) || 3,
         sortTask: 'Все',
     };
 
@@ -37,21 +20,29 @@ const Todo  = () => {
     const [count, setCount] = useState(initialState.count);
     const [sortTask, setSort] = useState(initialState.sortTask);
 
+    /*let addToLocal = JSON.stringify(items);
+    localStorage.setItem('editedList', addToLocal);*/
+
+
+    const saveToLocalStorage = (items, count) => {
+        let addToLocal = JSON.stringify(items);
+        localStorage.setItem("editedList", addToLocal);
+        localStorage.setItem("count", JSON.stringify(count));
+    };
+
     useEffect(() => {
+        saveToLocalStorage(items, count);
+    })
+
+    /*useEffect(() => {
         const items = localStorage.getItem('items');
         setTodoItem(JSON.parse(items))
     }, []);
 
     useEffect(() => {
         localStorage.setItem('items', JSON.stringify(items))
-    }, [items]);
+    }, [items]);*/
 
-   /* useEffect(() => {
-        console.log("update");
-    });
-    useEffect(() => {
-        console.log("mount");
-    }, []); */
 
     const onDragEnd = result => {
         const { source, destination } = result;
@@ -60,11 +51,11 @@ const Todo  = () => {
         const newTodoItems = [...items];
 
         const [removed] = newTodoItems.splice(source.index, 1);
-        newTodoItems.splice(destination.index, 0, removed)
+        newTodoItems.splice(destination.index, 0, removed);
         setTodoItem([
             ...newTodoItems
         ])
-    }
+    };
 
     const onClickDone = id => {
         const newItemList = items.map(item => {
@@ -84,9 +75,15 @@ const Todo  = () => {
         setTodoItem(newItemList);
     };
 
+
+
     const onClickDeleteDone = () => {
+        let isDelete = window.confirm('Удалить выделенное?');
+
+        if (isDelete) {
         const newItemList = items.filter(item => item.isDone === false);
         setTodoItem(newItemList);
+    }
     };
 
     const onMarkImportant = (id) => {
@@ -176,6 +173,6 @@ const Todo  = () => {
                 </DragDropContext>
             </Card>);
 
-}
+};
 
 export default Todo;

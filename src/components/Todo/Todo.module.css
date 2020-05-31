@@ -1,8 +1,12 @@
 .wrap {
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     margin: 0 auto;
-    width: 600px;
+    width: 100%;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    min-height: 700px;
 }
 
 .wrap h1 {

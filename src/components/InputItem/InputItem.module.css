@@ -2,6 +2,8 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    position: relative;
+    margin-bottom: 10px;
 }
 
 .inputAdd {
@@ -9,6 +11,7 @@
     display: flex;
     justify-content: space-between;
     flex-direction: row;
+    align-items: flex-end;
 }
 
 .error .text {
@@ -16,15 +19,17 @@
     color: #ff5246;
     font-size: 12px;
     margin: 0;
-
+    position: absolute;
+    bottom: -20px;
 }
 .text{
     display: none;
+    
 }
 
-.add, .error{
+/*.add, .error{
     margin: auto 0;
-}
+}*/
 
 .addIcon:hover {
     cursor: pointer;

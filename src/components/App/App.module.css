@@ -1,5 +1,4 @@
 body {
-    padding-top: 20px;
     font-family: Helvetica, sans-serif;
     background:
             linear-gradient(45deg, #92baac 45px, transparent 45px) 64px 64px,
@@ -18,6 +17,7 @@ body {
 .wrap {
     margin: auto;
     max-width: 700px;
+    min-width: 410px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,11 +27,10 @@ body {
 }
 
 .sidebar {
-    margin-bottom: 20px;
+    margin: 20px 0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 20px 0;
     width: 70%;
 }
 
@@ -67,4 +66,20 @@ body {
 
 .link_active .button {
     background: linear-gradient(45deg, rgba(255, 220, 90, 0.9), rgba(241, 163, 47, 0.9));
+}
+
+@media (max-width: 540px) {
+    .sidebar {
+        width: 100%;
+        justify-content: space-around;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 540px) {
+    .button {
+        font-size: 20px;
+        width: 140px;
+        height: 40px;
+    }
 }

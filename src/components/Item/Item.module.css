@@ -25,30 +25,37 @@
     background-color: #fff5e6;
 }*/
 
+.task {
+    display: flex;
+    align-items: center;
+}
+
 .icons {
-    margin: auto 0;
+    margin: auto 5px;
 }
 
 .icons svg {
     margin-left: 5px;
+    transition: .5s;
 }
 
 .icons svg:hover {
     cursor: pointer;
-    opacity: .7;
+    transform: scale(1.1);
 }
 
 .icons svg:active {
-    opacity: .9;
-}
-
-.important {
-    color: #3f51b5;
-    font-weight: bold;
-    border-color: #3f51b5;
+    opacity: .7;
 }
 
 .importantIcon {
-    color: #CCC;
-    transition: .5s;
+    color: #3f51b5;
+    opacity: .4;
 }
+
+.important {
+    opacity: 1;
+    font-weight: bold;
+    color: #3f51b5;
+}
+
