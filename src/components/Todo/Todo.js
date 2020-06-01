@@ -11,7 +11,9 @@ const Todo  = () => {
     const initialState = {
         items:
             JSON.parse(localStorage.getItem('editedList') ||
-            '[{"value": "Наведи порядок на своей планете", "isDone": true, "isImportant": true, "id": 1}]'),
+            '[{"value": "Наведи порядок на своей планете", "isDone": true, "isImportant": true, "id": 1},' +
+                '{"value": "Напиши код", "isDone": true, "isImportant": false, "id": 2},' +
+                '{"value": "Погладь кота", "isDone": false, "isImportant": false, "id": 3}]'),
         count: JSON.parse(localStorage.getItem('count')) || 3,
         sortTask: 'Все',
     };
@@ -19,10 +21,6 @@ const Todo  = () => {
     const [items, setTodoItem] = useState(initialState.items);
     const [count, setCount] = useState(initialState.count);
     const [sortTask, setSort] = useState(initialState.sortTask);
-
-    /*let addToLocal = JSON.stringify(items);
-    localStorage.setItem('editedList', addToLocal);*/
-
 
     const saveToLocalStorage = (items, count) => {
         let addToLocal = JSON.stringify(items);
@@ -32,17 +30,7 @@ const Todo  = () => {
 
     useEffect(() => {
         saveToLocalStorage(items, count);
-    })
-
-    /*useEffect(() => {
-        const items = localStorage.getItem('items');
-        setTodoItem(JSON.parse(items))
-    }, []);
-
-    useEffect(() => {
-        localStorage.setItem('items', JSON.stringify(items))
-    }, [items]);*/
-
+    });
 
     const onDragEnd = result => {
         const { source, destination } = result;
@@ -74,8 +62,6 @@ const Todo  = () => {
         const newItemList = items.filter(item => item.id !== id);
         setTodoItem(newItemList);
     };
-
-
 
     const onClickDeleteDone = () => {
         let isDelete = window.confirm('Удалить выделенное?');
@@ -130,13 +116,13 @@ const Todo  = () => {
 
     let sortingTasks;
     switch (sortTask) {
-        case 'Завершенные':
+        case 'Выполнено':
             sortingTasks = items.filter(item => item.isDone);
             break;
-        case 'Незавершенные':
+        case 'Осталось':
             sortingTasks = items.filter(item => !item.isDone);
             break;
-        case 'Все':
+        case 'Всего':
             sortingTasks = items;
             break;
         default :
@@ -146,8 +132,6 @@ const Todo  = () => {
         const allItems = items;
         const completedItems = items.filter(item => item.isDone === true);
         const uncompletedItems = items.filter(item => item.isDone === false);
-
-
 
         return (
             <Card className={styles.wrap}>

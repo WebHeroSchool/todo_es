@@ -1,5 +1,4 @@
 import React from "react";
-
 import styles from "./Created.module.css";
 import logo from "../../img/logo-whs.png";
 
@@ -12,7 +11,6 @@ const Created = () => {
                rel='noopener noreferrer'>
                 <img className={styles.created_img} src={logo} alt='logo'/>
             </a>
-
         </footer>
     );
 };

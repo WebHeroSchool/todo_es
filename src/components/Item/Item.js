@@ -9,12 +9,6 @@ import {grey} from "@material-ui/core/colors";
 
 
 class Item extends React.Component {
-    /*componentDidMount() {
-        this.timerId = setInterval(() => console.log('interval'), 1000);
-    };
-    componentWillUnmount() {
-        clearInterval(this.timerId);
-    };*/
 
     render() {
         const { value, isDone, isImportant, onClickDone, onClickDelete, onMarkImportant, id, provided, innerRef } = this.props;

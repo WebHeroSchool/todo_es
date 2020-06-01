@@ -43,11 +43,6 @@ class InputItem extends React.Component{
         }
     };
 
-    /*onSubmit = (event) => {
-        event.preventDefault();
-        this.props.onButtonClick(this.state.inputValue);
-    };*/
-
     render () {
         const { error, errorText } = this.state;
 

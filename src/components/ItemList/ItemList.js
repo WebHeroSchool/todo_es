@@ -3,12 +3,14 @@ import Item from '../Item/Item';
 import styles from './ItemList.module.css';
 import PropTypes from 'prop-types';
 import { Droppable, Draggable } from "react-beautiful-dnd";
+import list from '../../img/list.png';
 
-const ItemList = ({ items, sort, sortValue, onClickDone, onClickDelete, onMarkImportant }) => (
+const ItemList = ({ sort, onClickDone, onClickDelete, onMarkImportant }) => (
     <>
         { sort.length === 0 ?
-            <div className={styles.wrap}>
-                <p className={styles.empty}> Список пуст </p>
+            <div className={styles.wrap_empty}>
+                <p className={styles.empty}> Список пуст...</p>
+                <img src={list} alt='empty list'/>
             </div>:
             <Droppable droppableId={'list'}>
                 {(provided) => (<div ref={provided.innerRef} {...provided.droppableProps} className={styles.wrap}>
@@ -29,12 +31,11 @@ const ItemList = ({ items, sort, sortValue, onClickDone, onClickDelete, onMarkIm
                         </Draggable>
                     )}
                     {provided.placeholder}
-
                 </div>)}
             </Droppable>
         }
     </>
-)
+);
 
 ItemList.propTypes = {
     items: PropTypes.array.isRequired,

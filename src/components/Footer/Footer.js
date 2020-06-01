@@ -11,15 +11,14 @@ const Footer = ({ onClickSort, sorting,count, cauntAll, countDone, onClickDelete
                 <button className={styles.button} onClick={() => onClickCommonInput()}>Выделить все</button>
                 <button className={styles.button} onClick={() => onClickDeleteDone()}>Удалить</button>
             </div>
-
             <div className={styles.buttonGroup_wrap}>
                 <button
                     className={classnames({
                         [styles.button]: true,
                         [styles.buttonGroup]: true,
-                        [styles.selected]: sorting === 'Все'
+                        [styles.selected]: sorting === 'Всего'
                     })}
-                    onClick={() => onClickSort('Все')}
+                    onClick={() => onClickSort('Всего')}
                 >
                     Всего: {cauntAll}
                 </button>
@@ -27,18 +26,18 @@ const Footer = ({ onClickSort, sorting,count, cauntAll, countDone, onClickDelete
                     className={classnames({
                         [styles.button]: true,
                         [styles.buttonGroup]: true,
-                        [styles.selected]: sorting === 'Незавершенные'
+                        [styles.selected]: sorting === 'Осталось'
                     })}
-                    onClick={() => onClickSort('Незавершенные')}
+                    onClick={() => onClickSort('Осталось')}
                 >
                     Осталось: {count}
                 </button>
                 <button
                     className={classnames({
                         [styles.button]: true,
-                        [styles.selected]: sorting === 'Завершенные'
+                        [styles.selected]: sorting === 'Выполнено'
                     })}
-                    onClick={() => onClickSort('Завершенные')}
+                    onClick={() => onClickSort('Выполнено')}
                 >
                     Выполнено: {countDone}
                 </button>
@@ -46,6 +45,7 @@ const Footer = ({ onClickSort, sorting,count, cauntAll, countDone, onClickDelete
         </div>
     );
 };
+
 Footer.propTypes = {
     count: PropTypes.number.isRequired
 };

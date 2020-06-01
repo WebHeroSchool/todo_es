@@ -141,91 +141,93 @@ class About extends React.Component {
                                 </>
                             }
                         </Card>
-                        {isLoadingRepo ? null :
-                            <Card className={styles.wrap}>
+                        {isLoadingRepo ? <Preloader /> :
+                            <>
                                 {isErrorUser ? null :
-                                    <section className={styles.repo}>
-                                        <div className={styles.title_wrap}>
-                                            <h4 className={styles.title}>Репозитории на github.com:</h4>
-                                            {repoList.length <= 5 ? null :
-                                                <div className={styles.arrows}>
-                                                    <button onClick={this.prevPage} disabled={firstRepo < 5}>
-                                                        <img className={styles.arrow_left} src={arrow}
-                                                             alt='scroll-left'/>
-                                                    </button>
-                                                    <button onClick={this.nextPage}
-                                                            disabled={repoList.length <= lastRepo}>
-                                                        <img className={styles.arrow} src={arrow} alt='scroll-right'/>
-                                                    </button>
-                                                </div>
-                                            }
-                                        </div>
-                                        {isErrorRepo
-                                            ? <div className={styles.items__error}>
-                                                <img src={noRepoList} alt='/'/>
-                                                <h4 className={styles.errorText}>Что-то пошло не так...</h4>
-                                            </div>
-                                            : <>
-                                                {repoList.length !== 0
-                                                    ? <div className={styles.with_repo}>
-                                                        <ol className={styles.items}>
-                                                            {repoListPage.map(repo => (
-                                                                <a href={repo.clone_url}
-                                                                   className={styles.link}
-                                                                   target='_blank'
-                                                                   rel='noopener noreferrer'
-                                                                   key={repo.id}
-                                                                >
-                                                                    <li className={styles.item}>
-                                                                        <span className={styles.repo__name}>
-                                                                            {repo.name}
-                                                                        </span>
-                                                                        <span className={styles.repo__descr}>
-                                                                            {repo.description}
-                                                                        </span>
-                                                                        <div className={styles.repo__info}>
-                                                                            <span className={classnames({
-                                                                                [styles.language]: true,
-                                                                                [styles.html]: repo.language === 'HTML',
-                                                                                [styles.css]: repo.language === 'CSS',
-                                                                                [styles.js]: repo.language === 'JavaScript'
-                                                                            })}>
-                                                                                {repo.language}
-                                                                            </span>
-                                                                            <span
-                                                                                className={styles.star}>{repo.stargazers_count}</span>
-                                                                            <span
-                                                                                className={styles.fork}>{repo.forks_count}</span>
-                                                                            <span> Updated on {new Date(repo.updated_at).toLocaleString('en-US', {
-                                                                                day: 'numeric',
-                                                                                month: 'short',
-                                                                                year: 'numeric',
-                                                                            })}</span>
-                                                                        </div>
-                                                                    </li>
-                                                                </a>
-                                                            ))}
-                                                        </ol>
-                                                    </div>
-                                                    : <div className={styles.noRepo_wrap}>
-                                                        <img src={noRepoList} alt='/'/>
-                                                        <h4 className={styles.errorText}>Репозитории отсутствуют</h4>
-                                                        <span className={styles.tryAgain}>Добавьте как минимум один репозиторий на
-                                                         <a href='https://github.com'
-                                                            target='_blank'
-                                                            rel='noopener noreferrer'>
-                                                                    github.com
-                                                         </a>
-                                                    </span>
+                                    <Card className={styles.wrap}>
+                                        <section className={styles.repo}>
+                                            <div className={styles.title_wrap}>
+                                                <h4 className={styles.title}>Репозитории на github.com:</h4>
+                                                {repoList.length <= 5 ? null :
+                                                    <div className={styles.arrows}>
+                                                        <button onClick={this.prevPage} disabled={firstRepo < 5}>
+                                                            <img className={styles.arrow_left} src={arrow}
+                                                                 alt='scroll-left'/>
+                                                        </button>
+                                                        <button onClick={this.nextPage}
+                                                                disabled={repoList.length <= lastRepo}>
+                                                            <img src={arrow} alt='scroll-right'/>
+                                                        </button>
                                                     </div>
                                                 }
-                                            </>
-                                        }
-                                    </section>
+                                            </div>
+                                            {isErrorRepo
+                                                ? <div className={styles.items__error}>
+                                                    <img src={noRepoList} alt='empty list'/>
+                                                    <h4 className={styles.errorText}>Что-то пошло не так...</h4>
+                                                </div>
+                                                : <>
+                                                    {repoList.length !== 0
+                                                        ? <div className={styles.with_repo}>
+                                                            <ol className={styles.items}>
+                                                                {repoListPage.map(repo => (
+                                                                    <a href={repo.clone_url}
+                                                                       className={styles.link}
+                                                                       target='_blank'
+                                                                       rel='noopener noreferrer'
+                                                                       key={repo.id}
+                                                                    >
+                                                                        <li className={styles.item}>
+                                                                            <span className={styles.repo__name}>
+                                                                                {repo.name}
+                                                                            </span>
+                                                                            <span className={styles.repo__descr}>
+                                                                                {repo.description}
+                                                                            </span>
+                                                                            <div className={styles.repo__info}>
+                                                                                <span className={classnames({
+                                                                                    [styles.language]: true,
+                                                                                    [styles.html]: repo.language === 'HTML',
+                                                                                    [styles.css]: repo.language === 'CSS',
+                                                                                    [styles.js]: repo.language === 'JavaScript'
+                                                                                })}>
+                                                                                    {repo.language}
+                                                                                </span>
+                                                                                <span
+                                                                                    className={styles.star}>{repo.stargazers_count}</span>
+                                                                                <span
+                                                                                    className={styles.fork}>{repo.forks_count}</span>
+                                                                                <span> Updated on {new Date(repo.updated_at).toLocaleString('en-US', {
+                                                                                    day: 'numeric',
+                                                                                    month: 'short',
+                                                                                    year: 'numeric',
+                                                                                })}</span>
+                                                                            </div>
+                                                                        </li>
+                                                                    </a>
+                                                                ))}
+                                                            </ol>
+                                                        </div>
+                                                        : <div className={styles.noRepo_wrap}>
+                                                            <img src={noRepoList} alt='/'/>
+                                                            <h4 className={styles.errorText}>Репозитории отсутствуют</h4>
+                                                            <span className={styles.tryAgain}>Добавьте как минимум один репозиторий на
+                                                             <a href='https://github.com'
+                                                                target='_blank'
+                                                                rel='noopener noreferrer'>
+                                                                        github.com
+                                                             </a>
+                                                        </span>
+                                                        </div>
+                                                    }
+                                                </>
+                                            }
+                                        </section>
+                                        <Created />
+                                    </Card>
                                 }
-                            <Created />
-                        </Card>
-                    }
+                            </>
+                        }
                     </>
                 }
             </>
