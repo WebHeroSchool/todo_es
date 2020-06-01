@@ -1,4 +1,43 @@
-.flex {
+.wrap {
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.inputAdd {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.error .text {
+    display: inline-block;
+    position: absolute;
+    bottom: -20px;
+    margin: 0;
+    color: #ff5246;
+    font-size: 12px;
+}
+
+.text{
+    display: none;
+}
+
+.addIcon:hover {
+    cursor: pointer;
+    opacity: .7;
+}
+
+.addIcon:active {
+    opacity: .9;
+}
+
+.button {
+    background-color: transparent;
+    border: none;
+    outline: none;
 }
