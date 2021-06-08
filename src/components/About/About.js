@@ -6,7 +6,7 @@ const octokit = new Octokit();
 
 class About extends React.Component {
     state = {
-        isLoading: false,
+        isLoading: true,
         repoList: [],
         infoAboutUser: [],
         isError: false,
@@ -46,7 +46,7 @@ class About extends React.Component {
      };
 
     render() {
-        const { isLoading, repoList, isError, errorMessage,infoAboutUser } = this.state;
+        const { isLoading, repoList, isError, errorMessage, infoAboutUser } = this.state;
         const Preloader = () => <div className={styles.preloader}></div>;
 
         return(
@@ -64,7 +64,7 @@ class About extends React.Component {
                                 <p>Мои репозитории:</p>
                                 <ol className={styles.repo_list}>
                                     {repoList.map(repo => (<li key={repo.id}>
-                                        <a href={repo.id} className={styles.repo_name}>{repo.name}</a>
+                                        <a href={repo.svn_url} className={styles.repo_name}>{repo.name}</a>
                                     </li>
                                 ))}
                                 </ol>
