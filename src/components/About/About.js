@@ -16,7 +16,7 @@ class About extends React.Component {
     componentDidMount() {
         octokit.repos.listForUser({
             username: 'skripaleva',
-            sort: 'updated',
+            sort: 'pushed',
             type: 'all',
             per_page: '100'
         }).then(({ data }) => {
